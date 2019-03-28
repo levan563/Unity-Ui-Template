@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 125495160}
   - component: {fileID: 125495162}
   - component: {fileID: 125495161}
+  - component: {fileID: 125495163}
   m_Layer: 5
   m_Name: mainMenu
   m_TagString: Untagged
@@ -426,6 +427,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125495159}
   m_CullTransparentMesh: 0
+--- !u!111 &125495163
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125495159}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ecc978141bb798243a4e730032794c6c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ecc978141bb798243a4e730032794c6c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &226102978
 GameObject:
   m_ObjectHideFlags: 0
