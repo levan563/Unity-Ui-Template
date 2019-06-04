@@ -1,24 +1,29 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
-using System.Collections;
-using System;
+﻿using UnityEngine.EventSystems;
+using UnityEngine;
 
-public class UITransitionButton : MonoBehaviour, IPointerClickHandler
+namespace UI
 {
-    private UIWindow current;
-    [SerializeField]
-    private UIWindow next;
-
-    public void OnPointerClick(PointerEventData eventData)
+    public class UITransitionButton : MonoBehaviour, IPointerClickHandler
     {
-        next.IsOpened = current.IsOpened;
-        current.IsOpened = !current.IsOpened;
+        [SerializeField] private UIWindow next;
 
-        //next.IsOpened = !(current.IsOpened = !current.IsOpened);
-    }
+        private UIWindow current;
+       
 
-    void Awake()
-    {
-        current = GetComponentInParent<UIWindow>();
+        private void Awake()
+        {
+            current = GetComponentInParent<UIWindow>();
+        }
+
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (!current.IsClickable) return;
+
+            current.Fold();
+
+            UIManager.Instance.RunLater(
+                () => { next.Expand(); }, current.FoldTime);
+        }
     }
 }
