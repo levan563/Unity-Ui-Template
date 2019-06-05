@@ -10,6 +10,11 @@ namespace UI
         private Animator _animator;
         private bool _isClickable = true;
 
+        public Animator Animator
+        {
+            get { return this._animator ?? 
+                    (this._animator = GetComponent<Animator>()); }
+        }
         public bool IsClickable
         {
             get { return this._isClickable; }
@@ -32,7 +37,7 @@ namespace UI
         public void Fold()
         {            
             _isClickable = false;
-            _animator.SetBool("isOpened", false);
+            Animator.SetBool("isOpened", false);
 
             UIManager.Instance.RunLater(
                 () => { gameObject.SetActive(false); }, _foldTime);
@@ -43,15 +48,10 @@ namespace UI
             gameObject.SetActive(true);
             transform.SetAsFirstSibling();
 
-            _animator.SetBool("isOpened", true);            
+            Animator.SetBool("isOpened", true);            
 
             UIManager.Instance.RunLater(
                 () => { _isClickable = true; }, _expandTime);
-        }
-
-        public void Initialize()
-        {
-            if (!_animator) _animator = GetComponent<Animator>();
-        }
+        }        
     }
 }

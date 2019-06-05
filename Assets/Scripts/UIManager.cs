@@ -8,25 +8,25 @@ namespace UI
         private static UIManager _uiManager;
         private UIWindow[] _windows;
 
-
         public static UIManager Instance
         {
-            get { return _uiManager ?? (_uiManager = new UIManager()); }
-        }
+            get {
+                if (!_uiManager)
+                {
+                    GameObject gm = new GameObject("UIManager", typeof(UIManager));
+                    gm.transform.SetAsFirstSibling();
+                    DontDestroyOnLoad(gm);
 
+                    _uiManager = gm.GetComponent<UIManager>();                    
+                }
+                return _uiManager;
+            }
+        }
+        
 
         private void Awake()
         {
-            if (!_uiManager)
-            {
-                _uiManager = this;
-                _windows = Resources.FindObjectsOfTypeAll<UIWindow>();
-
-                for (int i = 0; i < _windows.Length; i++)
-                {
-                    _windows[i].Initialize();
-                }
-            }
+            if (!_uiManager) _uiManager = this;
         }
 
 
